@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AIRsys</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header id="bar">
+  <span class="brand">AIRsys</span>
+  <span id="docname" title="The drawing open now">untitled</span>
+  <span class="group">
+    <button id="b-new" title="New drawing">New</button>
+    <button id="b-open" title="Open a drawing (Ctrl+O)">Open</button>
+    <button id="b-save" title="Save (Ctrl+S)">Save</button>
+    <button id="b-saveas" title="Save under another name">Save as</button>
+  </span>
+  <span class="group">
+    <button id="b-undo" title="Undo (Ctrl+Z)">Undo</button>
+    <button id="b-redo" title="Redo (Ctrl+Y)">Redo</button>
+  </span>
+  <span class="group">
+    <button id="b-check" title="Check the drawing for open ports, loose lines and duplicate numbers">Check</button>
+    <button id="b-renumber" title="Number every part again, left to right and top to bottom">Renumber</button>
+    <button id="b-bom" title="Bill of materials as CSV">BOM</button>
+    <button id="b-netlist" title="Which ports are joined, as text">Netlist</button>
+    <button id="b-svg" title="The sheet as an SVG drawing">SVG</button>
+    <button id="b-print" title="Print the sheet">Print</button>
+  </span>
+  <span class="spacer"></span>
+  <button id="b-theme" title="Light or dark">Theme</button>
+  <button id="b-help" title="Keys (?)">Keys</button>
+</header>
+
+<div id="main">
+  <nav id="tools" aria-label="Tools">
+    <button data-tool="select" title="Select and move (Esc)">Select</button>
+    <button data-tool="wire" title="Draw a line (W)">Line</button>
+    <select id="wire-kind" title="What the next line carries">
+      <option value="work">Working</option>
+      <option value="pilot">Pilot</option>
+      <option value="exhaust">Exhaust</option>
+    </select>
+    <button data-tool="label" title="Net label: lines with the same label are joined (L)">Label</button>
+    <button data-tool="text" title="A note on the sheet (T)">Text</button>
+    <hr>
+    <button id="b-rotate" title="Rotate (R)">Rotate</button>
+    <button id="b-mirror" title="Mirror (X)">Mirror</button>
+    <button id="b-delete" title="Delete (Del)">Delete</button>
+    <hr>
+    <button id="b-fit" title="Fit the sheet (Home)">Fit</button>
+    <button id="b-zin" title="Zoom in (+)">+</button>
+    <button id="b-zout" title="Zoom out (-)">&minus;</button>
+  </nav>
+
+  <div id="canvas-wrap">
+    <svg id="canvas" xmlns="http://www.w3.org/2000/svg"></svg>
+  </div>
+
+  <aside id="side">
+    <section id="libpanel">
+      <h2>Symbols <small>(A)</small></h2>
+      <input id="lib-search" type="search" placeholder="Find a symbol" autocomplete="off">
+      <div id="lib-list"></div>
+    </section>
+    <section id="props"></section>
+    <section id="erc" hidden>
+      <h2>Check <button id="erc-close" class="small" title="Close">&times;</button></h2>
+      <p id="erc-summary"></p>
+      <ul id="erc-list"></ul>
+    </section>
+  </aside>
+</div>
+
+<footer id="status">
+  <span id="st-pos"></span>
+  <span id="st-zoom"></span>
+  <span id="st-hint"></span>
+</footer>
+
+<dialog id="open-dlg">
+  <form method="dialog">
+    <h2>Open a drawing</h2>
+    <div id="open-list"></div>
+    <menu><button value="cancel">Cancel</button></menu>
+  </form>
+</dialog>
+
+<dialog id="help-dlg">
+  <form method="dialog">
+    <h2>Keys</h2>
+    <table class="keys">
+      <tr><th>A</th><td>find a symbol to place</td></tr>
+      <tr><th>W</th><td>draw a line; click to bend, double-click or click a port to finish</td></tr>
+      <tr><th>/</th><td>while drawing, bend the other way first</td></tr>
+      <tr><th>Backspace</th><td>while drawing, take back the last bend</td></tr>
+      <tr><th>L / T</th><td>net label / note</td></tr>
+      <tr><th>R / X</th><td>rotate / mirror the selection, or the part being placed</td></tr>
+      <tr><th>M</th><td>move the selection with the mouse; drag works too, and lines stay attached</td></tr>
+      <tr><th>E</th><td>edit the selected part's number, value and fields</td></tr>
+      <tr><th>Del</th><td>delete</td></tr>
+      <tr><th>Ctrl+D</th><td>duplicate</td></tr>
+      <tr><th>Ctrl+Z / Ctrl+Y</th><td>undo / redo</td></tr>
+      <tr><th>Ctrl+S</th><td>save</td></tr>
+      <tr><th>Home</th><td>fit the sheet in the window</td></tr>
+      <tr><th>Wheel</th><td>zoom about the cursor; drag with the middle button, or Space and drag, to pan</td></tr>
+      <tr><th>Esc</th><td>stop what you are doing, back to select</td></tr>
+    </table>
+    <p>Clicking an open port (the small circle at the end of a port) starts a line from it.</p>
+    <menu><button value="close">Close</button></menu>
+  </form>
+</dialog>
+
+<script src="geometry.js"></script>
+<script src="editor.js"></script>
+</body>
+</html>

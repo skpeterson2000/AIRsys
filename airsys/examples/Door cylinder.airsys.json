@@ -1,0 +1,268 @@
+{
+ "format": "airsys-schematic",
+ "version": 1,
+ "sheet": "A4",
+ "title_block": {
+  "title": "Door cylinder, single solenoid",
+  "drawn_by": "AIRsys example",
+  "date": "2026-10-17",
+  "rev": "A",
+  "company": "",
+  "comment": "Meter-out speed control in both directions"
+ },
+ "parts": [
+  {
+   "id": "p1",
+   "sym": "supply",
+   "ref": "#S1",
+   "value": "6 bar",
+   "x": 150,
+   "y": 600,
+   "rot": 0,
+   "mirror": false,
+   "fields": {}
+  },
+  {
+   "id": "p2",
+   "sym": "ball_valve",
+   "ref": "V1",
+   "value": "1/4 in",
+   "x": 190,
+   "y": 580,
+   "rot": 0,
+   "mirror": false,
+   "fields": {}
+  },
+  {
+   "id": "p3",
+   "sym": "frl",
+   "ref": "Z1",
+   "value": "0-10 bar",
+   "x": 270,
+   "y": 580,
+   "rot": 0,
+   "mirror": false,
+   "fields": {}
+  },
+  {
+   "id": "p4",
+   "sym": "valve52_solenoid",
+   "ref": "V2",
+   "value": "24 V DC",
+   "x": 500,
+   "y": 450,
+   "rot": 0,
+   "mirror": false,
+   "fields": {
+    "Port size": "G1/8"
+   }
+  },
+  {
+   "id": "p5",
+   "sym": "silencer",
+   "ref": "Z2",
+   "value": "G1/8",
+   "x": 510,
+   "y": 500,
+   "rot": 0,
+   "mirror": false,
+   "fields": {},
+   "ref_off": [
+    -42,
+    0
+   ]
+  },
+  {
+   "id": "p6",
+   "sym": "silencer",
+   "ref": "Z3",
+   "value": "G1/8",
+   "x": 530,
+   "y": 500,
+   "rot": 0,
+   "mirror": false,
+   "fields": {}
+  },
+  {
+   "id": "p7",
+   "sym": "flow_control",
+   "ref": "V3",
+   "value": "G1/8",
+   "x": 510,
+   "y": 340,
+   "rot": 1,
+   "mirror": false,
+   "fields": {}
+  },
+  {
+   "id": "p8",
+   "sym": "flow_control",
+   "ref": "V4",
+   "value": "G1/8",
+   "x": 640,
+   "y": 340,
+   "rot": 1,
+   "mirror": false,
+   "fields": {}
+  },
+  {
+   "id": "p9",
+   "sym": "cylinder_double",
+   "ref": "A1",
+   "value": "32 x 100",
+   "x": 580,
+   "y": 200,
+   "rot": 0,
+   "mirror": false,
+   "fields": {
+    "Note": "door actuator"
+   }
+  }
+ ],
+ "wires": [
+  {
+   "id": "w1",
+   "pts": [
+    [
+     150,
+     580
+    ],
+    [
+     170,
+     580
+    ]
+   ],
+   "kind": "work"
+  },
+  {
+   "id": "w2",
+   "pts": [
+    [
+     210,
+     580
+    ],
+    [
+     240,
+     580
+    ]
+   ],
+   "kind": "work"
+  },
+  {
+   "id": "w3",
+   "pts": [
+    [
+     300,
+     580
+    ],
+    [
+     520,
+     580
+    ],
+    [
+     520,
+     480
+    ]
+   ],
+   "kind": "work"
+  },
+  {
+   "id": "w4",
+   "pts": [
+    [
+     510,
+     420
+    ],
+    [
+     510,
+     370
+    ]
+   ],
+   "kind": "work"
+  },
+  {
+   "id": "w5",
+   "pts": [
+    [
+     530,
+     420
+    ],
+    [
+     530,
+     400
+    ],
+    [
+     640,
+     400
+    ],
+    [
+     640,
+     370
+    ]
+   ],
+   "kind": "work"
+  },
+  {
+   "id": "w6",
+   "pts": [
+    [
+     510,
+     310
+    ],
+    [
+     510,
+     250
+    ],
+    [
+     550,
+     250
+    ],
+    [
+     550,
+     220
+    ]
+   ],
+   "kind": "work"
+  },
+  {
+   "id": "w7",
+   "pts": [
+    [
+     640,
+     310
+    ],
+    [
+     640,
+     250
+    ],
+    [
+     610,
+     250
+    ],
+    [
+     610,
+     220
+    ]
+   ],
+   "kind": "work"
+  }
+ ],
+ "labels": [
+  {
+   "id": "l1",
+   "x": 400,
+   "y": 580,
+   "text": "MAIN",
+   "rot": 0
+  }
+ ],
+ "texts": [
+  {
+   "id": "t1",
+   "x": 60,
+   "y": 80,
+   "size": 12,
+   "text": "Energizing the solenoid on V2 extends A1; releasing it lets the spring\nreturn V2 and A1 retracts. V3 and V4 set the speed each way by\nthrottling the air leaving the cylinder (meter-out)."
+  }
+ ]
+}
